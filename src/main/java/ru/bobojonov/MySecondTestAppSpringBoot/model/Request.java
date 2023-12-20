@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.bobojonov.MySecondTestAppSpringBoot.exception.UnsupportedCodeException;
 
 @Data
 @Builder
@@ -30,4 +31,10 @@ public class Request {
     private int templateId;
     private int productCode;
     private int smsCode;
+
+    public void checkUid() throws UnsupportedCodeException {
+        if ("123".equals(uid)) {
+            throw new UnsupportedCodeException("Unsupported uid: " + uid);
+        }
+    }
 }
