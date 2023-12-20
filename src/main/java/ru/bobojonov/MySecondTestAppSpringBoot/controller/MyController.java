@@ -44,17 +44,20 @@ public class MyController {
             request.checkUid();
             validationService.isValid(bindingResult);
         } catch (ValidationFailedException e) {
+            log.error("Ошибка валидации: {}", e.getMessage());
             response.setCode(Codes.FAILED);
             response.setErrorCode(ErrorCodes.VALIDATION_EXCEPTION);
             response.setErrorMessage(ErrorMessages.VALIDATION);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
+            log.error("Произошла неизвестная ошибка: {}", e.getMessage());
             response.setCode(Codes.FAILED);
             response.setErrorCode(ErrorCodes.UNKNOWN_EXCEPTION);
             response.setErrorMessage(ErrorMessages.UNKNOWN);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         modifyResponseService.modify(response);
+        log.info("Ответ: {}", response);
         return new ResponseEntity<>(modifyResponseService.modify(response), HttpStatus.OK);
     }
 }
