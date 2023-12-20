@@ -1,6 +1,7 @@
 package ru.bobojonov.MySecondTestAppSpringBoot.controller;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import ru.bobojonov.MySecondTestAppSpringBoot.service.ValidationService;
 import ru.bobojonov.MySecondTestAppSpringBoot.util.DateTimeUtil;
 import java.util.Date;
 
+@Slf4j
 @RestController
 public class MyController {
     private final ValidationService validationService;
@@ -28,6 +30,7 @@ public class MyController {
     }
     @PostMapping(value = "/feedback")
     public ResponseEntity<Response> feedback(@Valid @RequestBody Request request, BindingResult bindingResult) {
+        log.info("request: {}", request);
         Response response = Response.builder()
                 .uid(request.getUid())
                 .operationUid(request.getOperationUid())
