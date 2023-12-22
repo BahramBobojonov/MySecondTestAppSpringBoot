@@ -26,7 +26,7 @@ public class MyController {
     private final ModifyRequestService modifyRequestService;
 
     @Autowired
-    public MyController(ValidationService validationService, @Qualifier("modifySystemTimeResponseService") ModifyResponseService modifyResponseService, ModifyRequestService modifyRequestService) {
+    public MyController(ValidationService validationService, @Qualifier("modifySystemTimeResponseService") ModifyResponseService modifyResponseService, @Qualifier("modifySystemNameRequestService") ModifyRequestService modifyRequestService) {
         this.validationService = validationService;
         this.modifyResponseService = modifyResponseService;
         this.modifyRequestService = modifyRequestService;
@@ -34,6 +34,7 @@ public class MyController {
     @PostMapping(value = "/feedback")
     public ResponseEntity<Response> feedback(@Valid @RequestBody Request request, BindingResult bindingResult) {
         log.info("request: {}", request);
+        long startTime = System.currentTimeMillis();
         Response response = Response.builder()
                 .uid(request.getUid())
                 .operationUid(request.getOperationUid())
@@ -61,6 +62,9 @@ public class MyController {
         modifyResponseService.modify(response);
         log.info("Ответ: {}", response);
         modifyRequestService.modify(request);
+        long endTime = System.currentTimeMillis();
+        long executionTime = endTime - startTime;
+        log.info("Время выполнения в миллисекундах: {}", executionTime);
         return new ResponseEntity<>(modifyResponseService.modify(response), HttpStatus.OK);
     }
 }
