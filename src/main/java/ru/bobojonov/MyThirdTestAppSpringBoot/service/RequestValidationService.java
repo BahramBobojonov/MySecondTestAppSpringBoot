@@ -1,8 +1,8 @@
-package ru.bobojonov.MySecondTestAppSpringBoot.service;
+package ru.bobojonov.MyThirdTestAppSpringBoot.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
-import ru.bobojonov.MySecondTestAppSpringBoot.exception.ValidationFailedException;
+import ru.bobojonov.MyThirdTestAppSpringBoot.exception.ValidationFailedException;
 
 @Service
 public class RequestValidationService implements ValidationService {

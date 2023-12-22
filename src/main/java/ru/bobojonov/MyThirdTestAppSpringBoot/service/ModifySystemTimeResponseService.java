@@ -1,9 +1,9 @@
-package ru.bobojonov.MySecondTestAppSpringBoot.service;
+package ru.bobojonov.MyThirdTestAppSpringBoot.service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import ru.bobojonov.MySecondTestAppSpringBoot.model.Response;
-import ru.bobojonov.MySecondTestAppSpringBoot.util.DateTimeUtil;
+import ru.bobojonov.MyThirdTestAppSpringBoot.model.Response;
+import ru.bobojonov.MyThirdTestAppSpringBoot.util.DateTimeUtil;
 import java.util.Date;
 
 @Service

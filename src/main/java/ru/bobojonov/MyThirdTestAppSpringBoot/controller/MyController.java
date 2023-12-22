@@ -1,4 +1,4 @@
-package ru.bobojonov.MySecondTestAppSpringBoot.controller;
+package ru.bobojonov.MyThirdTestAppSpringBoot.controller;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -10,11 +10,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ru.bobojonov.MySecondTestAppSpringBoot.exception.ValidationFailedException;
-import ru.bobojonov.MySecondTestAppSpringBoot.model.*;
-import ru.bobojonov.MySecondTestAppSpringBoot.service.ModifyResponseService;
-import ru.bobojonov.MySecondTestAppSpringBoot.service.ValidationService;
-import ru.bobojonov.MySecondTestAppSpringBoot.util.DateTimeUtil;
+import ru.bobojonov.MyThirdTestAppSpringBoot.exception.ValidationFailedException;
+import ru.bobojonov.MyThirdTestAppSpringBoot.model.*;
+import ru.bobojonov.MyThirdTestAppSpringBoot.service.ModifyResponseService;
+import ru.bobojonov.MyThirdTestAppSpringBoot.service.ValidationService;
+import ru.bobojonov.MyThirdTestAppSpringBoot.util.DateTimeUtil;
 import java.util.Date;
 
 @Slf4j

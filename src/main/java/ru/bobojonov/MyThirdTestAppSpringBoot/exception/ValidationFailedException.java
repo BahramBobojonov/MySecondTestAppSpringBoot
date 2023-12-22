@@ -1,4 +1,4 @@
-package ru.bobojonov.MySecondTestAppSpringBoot.exception;
+package ru.bobojonov.MyThirdTestAppSpringBoot.exception;
 
 public class ValidationFailedException extends Exception {
     public ValidationFailedException(String message) { super(message);}
