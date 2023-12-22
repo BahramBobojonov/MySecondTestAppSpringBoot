@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.bobojonov.MySecondTestAppSpringBoot.exception.ValidationFailedException;
 import ru.bobojonov.MySecondTestAppSpringBoot.model.*;
+import ru.bobojonov.MySecondTestAppSpringBoot.service.ModifyRequestService;
 import ru.bobojonov.MySecondTestAppSpringBoot.service.ModifyResponseService;
 import ru.bobojonov.MySecondTestAppSpringBoot.service.ValidationService;
 import ru.bobojonov.MySecondTestAppSpringBoot.util.DateTimeUtil;
@@ -22,11 +23,13 @@ import java.util.Date;
 public class MyController {
     private final ValidationService validationService;
     private final ModifyResponseService modifyResponseService;
+    private final ModifyRequestService modifyRequestService;
 
     @Autowired
-    public MyController(ValidationService validationService, @Qualifier("modifySystemTimeResponseService") ModifyResponseService modifyResponseService) {
+    public MyController(ValidationService validationService, @Qualifier("modifySystemTimeResponseService") ModifyResponseService modifyResponseService, ModifyRequestService modifyRequestService) {
         this.validationService = validationService;
         this.modifyResponseService = modifyResponseService;
+        this.modifyRequestService = modifyRequestService;
     }
     @PostMapping(value = "/feedback")
     public ResponseEntity<Response> feedback(@Valid @RequestBody Request request, BindingResult bindingResult) {
@@ -39,7 +42,6 @@ public class MyController {
                 .errorCode(ErrorCodes.EMPTY)
                 .errorMessage(ErrorMessages.EMPTY)
                 .build();
-
         try {
             request.checkUid();
             validationService.isValid(bindingResult);
@@ -58,6 +60,7 @@ public class MyController {
         }
         modifyResponseService.modify(response);
         log.info("Ответ: {}", response);
+        modifyRequestService.modify(request);
         return new ResponseEntity<>(modifyResponseService.modify(response), HttpStatus.OK);
     }
 }
