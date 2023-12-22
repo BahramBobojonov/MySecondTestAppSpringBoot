@@ -15,22 +15,29 @@ import ru.bobojonov.MySecondTestAppSpringBoot.exception.UnsupportedCodeException
 @NoArgsConstructor
 @AllArgsConstructor
 public class Request {
-    @NotBlank
+    /***
+     * Уникальный индетификатор сообщения
+     */
+    @NotBlank(message = "uid не может быть пустым!")
     @Size(max = 32)
     private String uid;
     @NotBlank
     @Size(max = 32)
-    private String operationUid;
-    private Systems systemName;
+    private String operationUid; // Уникальный идентификатор операции
+    private Systems systemName; // Имя системы отправителя
     @NotBlank
-    private String systemTime;
-    private String source;
+    private String systemTime; // Время создания сообщения
+    private String source; // Наименование ресурса
+    private Positions positions; // Должность
+    private Double salary; // Зарплата
+    private Double bonus; // Премия
+    private Integer workDays; // Рабочие дни
     @Min(1)
     @Max(100000)
-    private int communicationId;
-    private int templateId;
-    private int productCode;
-    private int smsCode;
+    private Integer communicationId; // Уникальный идентификатор коммуникации
+    private Integer templateId; // Уникальный идентификатор шаблона
+    private Integer productCode; // Код продукта
+    private Integer smsCode; // Смс код
 
     public void checkUid() throws UnsupportedCodeException {
         if ("123".equals(uid)) {
@@ -41,10 +48,14 @@ public class Request {
     public String toString() {
         return "{" +
                 "uid='" + uid + '\'' +
-                ", operationUid='" + operationUid + '\'' +
+                "operationUid='" + operationUid + '\'' +
                 "systemName='" + systemName + '\'' +
                 "systemTime='" + systemTime + '\'' +
                 "source'" + source + '\'' +
+                "positions'" + positions + '\'' +
+                "salary'" + salary + '\'' +
+                "bonus'" + bonus + '\'' +
+                "workDays'" + workDays + '\'' +
                 "communicationId=" + communicationId +
                 "templateId=" + templateId +
                 "productCode=" + productCode +
