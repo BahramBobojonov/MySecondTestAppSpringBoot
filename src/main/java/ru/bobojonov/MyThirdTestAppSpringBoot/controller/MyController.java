@@ -31,6 +31,7 @@ public class MyController {
     @PostMapping(value = "/feedback")
     public ResponseEntity<Response> feedback(@Valid @RequestBody Request request, BindingResult bindingResult) {
         log.info("request: {}", request);
+        long startTime = System.currentTimeMillis();
         Response response = Response.builder()
                 .uid(request.getUid())
                 .operationUid(request.getOperationUid())
@@ -58,6 +59,10 @@ public class MyController {
         }
         modifyResponseService.modify(response);
         log.info("Ответ: {}", response);
+        long endTime = System.currentTimeMillis();
+        long executionTime = endTime - startTime;
+
+        log.info("Время выполнения в миллисекундах: {}", executionTime);
         return new ResponseEntity<>(modifyResponseService.modify(response), HttpStatus.OK);
     }
 }
